@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="filters">
+    <a
+      class="button"
+      [class.active]="selectedCategory === null"
+      [class.bold]="selectedCategory === null"
+      (click)="filterProductsByCategory(null)">
+      All
+    </a>
+    <a *ngFor="let category of uniqueCategories()"
+       class="button"
+       [class.active]="selectedCategory === category"
+       (click)="filterProductsByCategory(category)">
+      {{category}}
+    </a>
+  </div>
+
+  <ul class="products">
+
+    <li class="product-item" *ngFor="let currentProduct of filteredProducts">
+      <bot-product-details
+        [product]="currentProduct"
+        (buy)="addToCard(currentProduct)"
+      ></bot-product-details>
+    </li>
+
+  </ul>
+</div>
