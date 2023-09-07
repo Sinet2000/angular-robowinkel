@@ -69,7 +69,8 @@
               "browserTarget": "nn-robotwinkel:build:production"
             },
             "development": {
-              "browserTarget": "nn-robotwinkel:build:development"
+              "browserTarget": "nn-robotwinkel:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

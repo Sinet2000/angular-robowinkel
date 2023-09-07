@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "API Server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "author": "MidTempoCodeLab",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.17.3"
+  }
+}
