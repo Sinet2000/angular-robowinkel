@@ -1,0 +1,31 @@
+<div class="container">
+  <form #signInForm="ngForm" class="form" (ngSubmit)="signIn()">
+    <img class="logo" src="/assets/images/logo.png" />
+    <div class="sign-in">Sign In</div>
+    <div class="sub-text">to acquire awesome bots</div>
+
+    <mat-form-field>
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{validateEmail()}}</mat-error>
+    </mat-form-field>
+
+    <input
+      name="password"
+      #password="ngModel"
+      placeholder="Password"
+      required
+      type="password"
+      [(ngModel)]="credentials.password"
+    />
+    <em class="error" *ngIf="password.invalid && password.touched">Password is required</em>
+    <div class="buttons">
+      <button type="submit" [disabled]="signInForm.invalid" class="button cta">
+        Sign In
+      </button>
+      <div class="signInError" *ngIf="signInError">
+        Sign-in failed. Please Try Again!
+      </div>
+    </div>
+  </form>
+</div>
