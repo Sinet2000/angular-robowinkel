@@ -4,13 +4,15 @@
       class="button"
       [class.active]="selectedCategory === null"
       [class.bold]="selectedCategory === null"
-      (click)="filterProductsByCategory(null)">
+      routerLink="/catalog">
       All
     </a>
     <a *ngFor="let category of uniqueCategories()"
        class="button"
        [class.active]="selectedCategory === category"
-       (click)="filterProductsByCategory(category)">
+       routerLink="/catalog"
+       [queryParams]="{filter: category}"
+      >
       {{category}}
     </a>
   </div>

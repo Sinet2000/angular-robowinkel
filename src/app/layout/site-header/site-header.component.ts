@@ -6,5 +6,5 @@ import { Component } from "@angular/core";
   styleUrls: ['./site-header.component.scss']
 })
 export class SiteHeaderComponent {
-
+  constructor() {}
 }

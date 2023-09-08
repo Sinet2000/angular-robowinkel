@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { IProduct } from "./models/product.model";
+import {Component, inject} from '@angular/core';
+import {IProduct} from "./models/product.model";
 import {CartService} from "./services/cart.service";
 import {ProductService} from "./services/product.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'bot-catalog',
@@ -15,17 +16,26 @@ export class CatalogComponent {
   products: IProduct[] = [];
   selectedCategory: string | null = null;
 
-  constructor(private cartSvc: CartService, private productSvc: ProductService) {
+  constructor(
+    private cartSvc: CartService,
+    private productSvc: ProductService,
+    private router: Router,
+    private route: ActivatedRoute) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
+
     this.productSvc.getProducts().subscribe(products => {
       this.products = products;
-    })
-  }
+    });
 
-  filterProductsByCategory(category: string | null): void {
-    this.selectedCategory = category;
+    this.route.queryParams.subscribe((params) => {
+      this.selectedCategory = params['filter'] ?? null;
+    })
+    // this.route.params.subscribe((params) => {
+    //   this.selectedCategory = params['filter'] ?? null;
+    // })
+    // this.selectedCategory = this.route.snapshot.params['filter'];
   }
 
   get filteredProducts(): IProduct[] {
@@ -63,5 +73,6 @@ export class CatalogComponent {
 
   addToCard(product: IProduct) {
     this.cartSvc.add(product)
+    this.router.navigate(['/cart']);
   }
 }
